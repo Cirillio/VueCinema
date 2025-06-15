@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@plugin "flyonui" {
+  themes: soft --default, black --preferslight, light, corporate;
+}
+@import "flyonui/variants.css";
+@source "../node_modules/flyonui/flyonui.js";
+
+@custom-variant black (&:where([data-theme=black], [data-theme=black] *));
+@custom-variant light (&:where([data-theme=light], [data-theme=light] *));
+
+html {
+  @apply transition-colors duration-250 bg-neutral-100 black:bg-neutral-800;
+}
