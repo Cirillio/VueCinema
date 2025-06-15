@@ -26,10 +26,10 @@
 </template>
 
 <script setup>
-import AppLogo from "../AppLogo.vue";
-import ThemeButton from "../ThemeButton.vue";
+import AppLogo from "../ui/AppLogo.vue";
+import ThemeButton from "../ui/ThemeButton.vue";
 import HeaderNavLink from "./HeaderNavLink.vue";
-import TooltipButton from "../TooltipButton.vue";
+import TooltipButton from "../ui/TooltipButton.vue";
 </script>
 
 <style></style>

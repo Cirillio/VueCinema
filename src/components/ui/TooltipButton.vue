@@ -5,7 +5,7 @@
         class="btn transition-colors rounded-lg duration-250 btn-soft btn-sm"
         :class="{ 'btn-square': !Label }"
       >
-        <Iconify v-if="icon" :name="icon" size="16" />
+        <Iconify v-if="icon" :name="icon" :size="16" />
         <span v-if="Label">{{ Label }}</span>
       </button>
       <div

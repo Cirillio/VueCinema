@@ -12,7 +12,7 @@ themeStore.init();
     @click="themeStore.toggleTheme"
     class="btn btn-square rounded-lg transition-colors duration-250 btn-soft btn-sm"
   >
-    <Iconify v-if="themeStore.isDark" name="sun-min" size="16" />
-    <Iconify v-else name="moon" size="16" />
+    <Iconify v-if="themeStore.isDark" name="sun-min" :size="16" />
+    <Iconify v-else name="moon" :size="16" />
   </button>
 </template>
