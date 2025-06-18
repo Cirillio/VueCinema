@@ -9,7 +9,7 @@
     <div class="join">
       <input
         v-model="search"
-        class="input input-sm join-item"
+        class="input w-fit min-w-60 input-sm join-item"
         placeholder="Search"
       />
       <button
@@ -20,8 +20,7 @@
       </button>
     </div>
 
-    <div class="divider"></div>
-    <div class="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-3 gap-2">
+    <div class="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 gap-2">
       <MovieCard
         v-for="movie in filteredMovies"
         :key="movie.id"
@@ -42,7 +41,7 @@ const movies = [
     id: 1,
     title: "Anora",
     year: 2024,
-    director: "Shaun Baker",
+    director: "Sean Baker",
     cover: "anora.jpg",
     description: "Oscar Winner 2024",
   },
@@ -66,7 +65,7 @@ const movies = [
     id: 4,
     title: "Prisoners",
     year: 2013,
-    director: "Denenis Villeneuve",
+    director: "Denis Villeneuve",
     cover: "prisoners.jpg",
     description: "A thriller about the kidnapping of two prisoners",
   },

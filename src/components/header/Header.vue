@@ -1,10 +1,20 @@
 <template>
   <div
-    class="flex w-full items-center justify-between shadow-xs black:shadow-neutral-700 bg-white black:bg-neutral-900/50 p-4 rounded-xl"
+    class="flex flex-col w-full gap-4 items-center justify-center shadow-xs black:shadow-neutral-700 bg-white black:bg-neutral-900/50 p-4 rounded-lg"
   >
-    <AppLogo />
+    <div class="flex w-full justify-between items-center">
+      <ThemeButton />
+      <AppLogo />
+      <div class="flex gap-2">
+        <TooltipButton icon="person">
+          <button class="btn btn-sm btn-text">Profile</button>
+          <div class="divider my-1"></div>
+          <button class="btn w-full btn-sm btn-error btn-text">Quit</button>
+        </TooltipButton>
+      </div>
+    </div>
     <nav class="w-full">
-      <ul class="flex items-center space-x-4 w-full justify-center">
+      <ul class="flex items-center space-x-8 w-full justify-center">
         <li>
           <HeaderNavLink to="Movies" />
         </li>
@@ -13,15 +23,6 @@
         </li>
       </ul>
     </nav>
-    <div class="flex gap-2">
-      <TooltipButton icon="person">
-        <button class="btn btn-sm btn-text">Profile</button>
-        <div class="divider my-1"></div>
-        <button class="btn w-full btn-sm btn-error btn-text">Quit</button>
-      </TooltipButton>
-
-      <ThemeButton />
-    </div>
   </div>
 </template>
 

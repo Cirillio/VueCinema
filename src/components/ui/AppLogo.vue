@@ -1,11 +1,12 @@
 <template>
-  <router-link
-    to="/"
-    class="flex items-center gap-2 cursor-pointer opacity-80 hover:opacity-100 transition-opacity duration-100"
-  >
-    <Iconify class="black:text-secondary" name="videocam-circle" :size="28" />
+  <router-link to="/" class="flex items-center gap-2 cursor-pointer group">
+    <Iconify
+      class="black:text-secondary text-dg group-hover:text-secondary black:group-hover:text-dg duration-150"
+      name="videocam-circle"
+      :size="24"
+    />
     <span
-      class="text-xl font-bold text-nowrap black:text-secondary text-shadow-xs"
+      class="text-3xl uppercase font-extrabold text-nowrap text-dg group-hover:text-secondary black:group-hover:text-dg duration-150 black:text-secondary text-shadow-xs"
     >
       Vue Movie
     </span>

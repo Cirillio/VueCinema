@@ -1,6 +1,6 @@
 <template>
   <router-link
-    class="link hover:link-secondary link-animated link-md"
+    class="link text-xl hover:link-secondary text-neutral-700 black:text-white link-animated link-xl"
     :to="'/' + to.toLowerCase()"
     >{{ to }}</router-link
   >

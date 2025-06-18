@@ -16,8 +16,15 @@
       >
         {{ movie.title }}
       </router-link>
-      <p class="text-xs h-fit flex flex-0 text-neutral-600">
-        {{ movie.director }}, {{ movie.year }}
+      <p
+        class="text-xs h-fit flex flex-0 [&>*]:font-medium [&>*]:text-neutral-600"
+      >
+        <router-link
+          to="/directors"
+          class="link link-hover opacity-80 hover:opacity-100 black:opacity-90"
+          >{{ movie.director }}</router-link
+        >
+        <span>, {{ movie.year }}</span>
       </p>
       <div class="divider"></div>
       <p class="text-sm text-neutral-500 black:text-neutral-300">
