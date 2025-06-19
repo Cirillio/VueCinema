@@ -62,13 +62,13 @@ onMounted(() => {
 <template>
   <div
     id="multi-slide-datetimes-shedule"
-    data-carousel='{ "loadingClasses": "opacity-0", "slidesQty": {"xs": 7, "sm": 9, "md": 11, "lg": 5, "xl": 6, "2xl": 7 }, "isDraggable": true }'
+    data-carousel='{ "loadingClasses": "opacity-0", "slidesQty": {"xs": 5, "sm": 9, "md": 11, "lg": 5, "xl": 6, "2xl": 7 }, "isDraggable": true }'
     class="relative flex gap-2 w-full min-w-0 mx-auto"
   >
     <!-- Previous Slide -->
     <button
       type="button"
-      class="relative sm:flex min-[100px]:hidden carousel-prev carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
+      class="relative flex carousel-prev carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
     >
       <Iconify name="arrow-left" :size="20" />
     </button>
@@ -91,7 +91,7 @@ onMounted(() => {
     <!-- Next Slide -->
     <button
       type="button"
-      class="relative sm:flex min-[100px]:hidden carousel-next carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
+      class="relative flex carousel-next carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
     >
       <Iconify name="arrow-right" :size="20" />
     </button>

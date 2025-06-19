@@ -6,9 +6,12 @@
       <div
         id="draggable"
         data-carousel='{ "loadingClasses": "opacity-0", "isInfiniteLoop": true, "isAutoPlay": true, "speed": 3000, "dotsItemClasses": "carousel-dot carousel-active:bg-primary", "isDraggable": true }'
-        class="relative col-span-3"
+        class="relative col-span-3 h-fit"
       >
-        <div class="carousel rounded-lg aspect-video">
+        <div
+          ref="movieCarouselElement"
+          class="carousel rounded-lg aspect-video"
+        >
           <div
             class="carousel-body h-full opacity-0 carousel-dragging:transition-none carousel-dragging:cursor-grabbing"
           >
@@ -54,46 +57,17 @@
           class="carousel-pagination sm:flex hidden absolute bottom-3 right-3 scale-75 justify-center gap-3"
         ></div>
       </div>
-      <div class="col-start-4 col-span-2 flex flex-col gap-2">
+      <div
+        ref="sheduleElement"
+        :style="sheduleElementHeight"
+        class="col-start-4 col-span-2 flex flex-col gap-2"
+      >
         <ShedulePagination />
-
-        <div class="w-full flex justify-between items-baseline">
-          <span class="font-semibold italic text-md md:text-lg xl:text-2xl">
-            Nearest cinema
-          </span>
-          <span class="text-sm md:text-md xl:text-xl font-bold"
-            >{{ sheduleDate.date }}, {{ sheduleDate.day }}
-            {{ sheduleDate.month }} {{ sheduleDate.year }}</span
-          >
-        </div>
-
-        <div class="card h-full bg-transparent shadow-none">
-          <div
-            class="w-full black:bg-neutral-800 bg-neutral-100 h-full rounded-lg overflow-x-auto"
-          >
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Movie</th>
-                  <th>Time</th>
-                  <th>Rating</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td><span class="lg:text-lg font-semibold">Love</span></td>
-                  <td><span class="lg:text-lg">18:50</span></td>
-                  <td>
-                    <span
-                      class="badge badge-error badge-sm lg:badge-md badge-outline rounded-full"
-                      >18+</span
-                    >
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
+        <span class="badge badge-lg badge-primary mx-auto"
+          >{{ sheduleDate.date }}, {{ sheduleDate.day }}
+          {{ sheduleDate.month }} {{ sheduleDate.year }}</span
+        >
+        <SheduleTable />
       </div>
     </div>
   </div>
@@ -112,11 +86,46 @@
 </style>
 
 <script setup>
-import { computed } from "vue";
-import ShedulePagination from "../components/movies/shedule/ShedulePagination.vue";
+import { computed, ref, onMounted, onBeforeUnmount } from "vue";
 import { useSheduleStore } from "../stores/shedule.store";
+import ShedulePagination from "../components/movies/shedule/ShedulePagination.vue";
+import SheduleTable from "../components/movies/shedule/SheduleTable.vue";
 
 const sheduleStore = useSheduleStore();
 
 const sheduleDate = computed(() => ({ ...sheduleStore.selectedDate }));
+
+const movieCarouselElement = ref(null);
+const sheduleElement = ref(null);
+const sheduleElementHeight = ref({});
+
+let resizeObserver = null;
+
+onMounted(() => {
+  resizeObserver = new ResizeObserver((entries) => {
+    const windowWidth = window.innerWidth;
+
+    if (windowWidth < 1024) {
+      sheduleElementHeight.value = { height: "auto" };
+
+      return;
+    }
+
+    // Получаем новую высоту карусели
+    const newHeight = entries[0].contentRect.height + "px";
+
+    // Обновляем высоту блока расписания
+    sheduleElementHeight.value = { height: newHeight };
+  });
+
+  // Начинаем наблюдение за каруселью
+  if (movieCarouselElement.value) {
+    resizeObserver.observe(movieCarouselElement.value);
+  }
+});
+
+onBeforeUnmount(() => {
+  // Очищаем наблюдатель при размонтировании
+  if (resizeObserver) resizeObserver.disconnect();
+});
 </script>
