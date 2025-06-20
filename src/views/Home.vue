@@ -1,17 +1,14 @@
 <template>
-  <div
-    class="w-full h-full flex-1 shadow-xs black:shadow-neutral-700 bg-white black:bg-neutral-900/50 p-1 md:p-4 rounded-lg"
-  >
-    <div class="lg:grid flex flex-col lg:grid-cols-5 gap-4">
+  <div class="flex-1 justify-start flex flex-col min-w-0">
+    <div class="lg:grid h-fit min-w-0 flex flex-col lg:grid-cols-5 gap-2">
       <div
+        ref="movieCarouselElement"
         id="draggable"
         data-carousel='{ "loadingClasses": "opacity-0", "isInfiniteLoop": true, "isAutoPlay": true, "speed": 3000, "dotsItemClasses": "carousel-dot carousel-active:bg-primary", "isDraggable": true }'
-        class="relative col-span-3 h-fit"
+        class="relative flex flex-col gap-2 col-span-3 h-fit"
       >
-        <div
-          ref="movieCarouselElement"
-          class="carousel rounded-lg aspect-video"
-        >
+        <PageSubtitle label="Today in Cinema" />
+        <div class="carousel rounded-lg aspect-video">
           <div
             class="carousel-body h-full opacity-0 carousel-dragging:transition-none carousel-dragging:cursor-grabbing"
           >
@@ -59,11 +56,11 @@
       </div>
       <div
         ref="sheduleElement"
-        :style="sheduleElementHeight"
         class="col-start-4 col-span-2 flex flex-col gap-2"
       >
+        <PageSubtitle label="Shedule" />
         <ShedulePagination />
-        <span class="badge badge-lg badge-primary mx-auto"
+        <span class="badge badge-sm lg:badge-lg badge-primary mx-auto"
           >{{ sheduleDate.date }}, {{ sheduleDate.day }}
           {{ sheduleDate.month }} {{ sheduleDate.year }}</span
         >
@@ -86,10 +83,12 @@
 </style>
 
 <script setup>
-import { computed, ref, onMounted, onBeforeUnmount } from "vue";
-import { useSheduleStore } from "../stores/shedule.store";
+import { computed, ref } from "vue";
+import PageSubtitle from "../ui/PageSubtitle.vue";
 import ShedulePagination from "../components/movies/shedule/ShedulePagination.vue";
 import SheduleTable from "../components/movies/shedule/SheduleTable.vue";
+import { useSheduleStore } from "../stores/shedule.store";
+import { useHeightRef } from "../composables/useHeightRef";
 
 const sheduleStore = useSheduleStore();
 
@@ -97,35 +96,6 @@ const sheduleDate = computed(() => ({ ...sheduleStore.selectedDate }));
 
 const movieCarouselElement = ref(null);
 const sheduleElement = ref(null);
-const sheduleElementHeight = ref({});
 
-let resizeObserver = null;
-
-onMounted(() => {
-  resizeObserver = new ResizeObserver((entries) => {
-    const windowWidth = window.innerWidth;
-
-    if (windowWidth < 1024) {
-      sheduleElementHeight.value = { height: "auto" };
-
-      return;
-    }
-
-    // Получаем новую высоту карусели
-    const newHeight = entries[0].contentRect.height + "px";
-
-    // Обновляем высоту блока расписания
-    sheduleElementHeight.value = { height: newHeight };
-  });
-
-  // Начинаем наблюдение за каруселью
-  if (movieCarouselElement.value) {
-    resizeObserver.observe(movieCarouselElement.value);
-  }
-});
-
-onBeforeUnmount(() => {
-  // Очищаем наблюдатель при размонтировании
-  if (resizeObserver) resizeObserver.disconnect();
-});
+useHeightRef(movieCarouselElement, sheduleElement, 1024);
 </script>

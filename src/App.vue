@@ -1,11 +1,19 @@
 <script setup>
 import { RouterLink, RouterView } from "vue-router";
-import Header from "./components/header/Header.vue";
+import Aside from "./layouts/Aside/Aside.vue";
+import Header from "./layouts/Header/Header.vue";
 </script>
 
 <template>
-  <div class="max-w-[1600px] mx-auto min-h-dvh flex flex-col gap-2 p-2">
-    <Header />
-    <RouterView />
+  <div class="flex min-h-dvh max-h-dvh p-2 gap-2">
+    <Aside />
+    <div class="flex flex-col gap-2 min-w-0">
+      <Header />
+      <div
+        class="max-h-full flex-1 flex overflow-y-auto [scrollbar-width:none] bg-white black:bg-neutral-900/50 p-2 rounded-md"
+      >
+        <RouterView />
+      </div>
+    </div>
   </div>
 </template>

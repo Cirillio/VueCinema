@@ -1,6 +1,6 @@
 <script setup>
 import { ref, onMounted } from "vue";
-import Iconify from "../../ui/Iconify.vue";
+import Iconify from "../../../ui/Iconify.vue";
 import ShedulePageButton from "./ShedulePageButton.vue";
 import { useSheduleStore } from "../../../stores/shedule.store";
 
@@ -80,8 +80,8 @@ onMounted(() => {
         <!-- Slide -->
         <div
           v-for="(day, index) in days_shedule"
-          :key="index"
-          class="carousel-slide px-1 sm:px-2"
+          :key="day.date"
+          class="carousel-slide lg:px-1 xl:px-1.5 px-0.5"
         >
           <ShedulePageButton :day="day" :id="index" />
         </div>

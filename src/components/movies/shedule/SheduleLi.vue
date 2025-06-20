@@ -1,8 +1,8 @@
 <template>
   <li
-    class="w-full flex *:px-3 *:py-1 lg:*:py-3 hover:bg-base-content/10 transition-colors duration-100"
+    class="w-full flex xl:text-base text-sm items-center *:px-3 *:py-1 lg:*:py-3 hover:bg-base-content/10 transition-colors duration-100"
   >
-    <span class="w-2/3 overflow-x-hidden"
+    <span class="w-2/3 overflow-x-hidden flex"
       ><router-link
         class="link link-animated truncate"
         to="/shedule/{{ movie.id }}"

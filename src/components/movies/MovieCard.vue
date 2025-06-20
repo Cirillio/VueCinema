@@ -1,6 +1,6 @@
 <template>
   <div
-    class="card group gap-2 sm:max-w-sm bg-white hover:bg-neutral-100 black:hover:bg-neutral-800 black:bg-neutral-800/50 transition-colors p-2"
+    class="card group min-w-full gap-2 sm:max-w-sm bg-white hover:bg-neutral-100 black:hover:bg-neutral-800 black:bg-neutral-800/50 transition-colors p-2"
   >
     <figure class="aspect-video rounded-lg">
       <img
@@ -12,7 +12,7 @@
     <div class="card-body gap-1 flex flex-col p-0">
       <router-link
         :to="'/movies/' + movie.id"
-        class="card-title text-xl link transition-all link-animated w-fit"
+        class="card-title text-base md:text-lg lg:text-xl link transition-all link-animated w-fit"
       >
         {{ movie.title }}
       </router-link>
@@ -52,8 +52,7 @@
 
 <script setup>
 import { ref } from "vue";
-import Iconify from "../ui/Iconify.vue";
-
+import Iconify from "../../ui/Iconify.vue";
 defineProps({
   movie: Object,
 });

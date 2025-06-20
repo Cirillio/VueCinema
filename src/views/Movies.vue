@@ -1,15 +1,11 @@
 <template>
-  <div
-    class="w-full max-h-full flex flex-col gap-2 flex-1 shadow-xs black:shadow-neutral-700 bg-white black:bg-neutral-900/50 px-4 py-2 rounded-xl"
-  >
-    <h2 class="black:text-white text-neutral-600 text-3xl font-semibold">
-      Movies
-    </h2>
-    <div class="divider"></div>
+  <div class="w-full h-full flex flex-col gap-2">
+    <PageSubtitle label="Movies" />
+
     <div class="join">
       <input
         v-model="search"
-        class="input w-fit min-w-60 input-sm join-item"
+        class="input w-full min-w-0 min-[400px]:w-fit input-sm join-item"
         placeholder="Search"
       />
       <button
@@ -20,8 +16,11 @@
       </button>
     </div>
 
-    <div class="grid grid-cols-1 min-[400px]:grid-cols-2 sm:grid-cols-4 gap-2">
+    <div
+      class="grid grid-cols-1 min-[400px]:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 py-1"
+    >
       <MovieCard
+        class="mx-auto"
         v-for="movie in filteredMovies"
         :key="movie.id"
         :movie="movie"
@@ -31,7 +30,8 @@
 </template>
 
 <script setup>
-import Iconify from "../components/ui/Iconify.vue";
+import Iconify from "../ui/Iconify.vue";
+import PageSubtitle from "../ui/PageSubtitle.vue";
 import { ref, watch } from "vue";
 import { useDebounceFn } from "@vueuse/core";
 
