@@ -3,22 +3,13 @@
     <!-- Carousel -->
     <div class="carousel rounded-lg" :class="`aspect-${aspect}`">
       <div
-        class="carousel-body h-full opacity-0"
+        class="carousel-body overfly h-full opacity-0"
         :class="{
           'carousel-dragging:transition-none carousel-dragging:cursor-grabbing':
             drag,
         }"
       >
         <!-- Slides -->
-        <!-- <router-link class="carousel-slide" to="/movie/123">
-          <picture class="relative">
-            <span
-              class="absolute left-10 bottom-10 text-shadow-lg text-sm sm:text-lg lg:text-4xl text-white font-bold"
-              >Premier!</span
-            >
-            <img src="/covers/tos.jpg" alt="" class="w-full" />
-          </picture>
-        </router-link> -->
         <slot />
       </div>
     </div>

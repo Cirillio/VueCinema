@@ -1,13 +1,13 @@
 <template>
   <div
-    class="w-full flex flex-col overflow-hidden border border-base-content/25 rounded-lg h-full"
+    class="w-full flex flex-col overflow-hidden rounded-md h-full bg-neutral-100 black:bg-neutral-800"
   >
     <ul
-      class="lg:*:py-3 *:px-3 *:py-1 *:flex *:items-center xl:text-base text-sm border-base-content/25 border-b divide-base-content/25 flex w-full divide-x"
+      class="lg:*:py-3 *:px-3 px-2 *:py-1 *:flex *:items-center rounded-md xl:text-base text-xs sm:text-sm flex w-full bg-neutral-500/10"
     >
       <li class="w-2/3 font-bold">Movie</li>
       <li class="w-1/6 justify-center font-bold">Time</li>
-      <li class="w-1/6 justify-center font-bold">Rating</li>
+      <li class="w-1/6 justify-center font-bold">Hall</li>
     </ul>
     <div class="h-full overflow-y-auto flex-col flex [scrollbar-width:none]">
       <BadgeAlert

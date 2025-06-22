@@ -14,7 +14,7 @@
       <div class="divider"></div>
 
       <li class="w-full">
-        <AsideNavLink to="Settings" label="Settings" icon="gear-alt" />
+        <AsideNavLink to="z" label="Settings" icon="gear-alt" />
       </li>
       <li class="w-full">
         <AsideNavLink to="About" label="About" icon="info-circle" />

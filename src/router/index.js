@@ -19,6 +19,14 @@ const router = createRouter({
         title: "Movies",
       },
     },
+    {
+      path: "/z",
+      name: "z",
+      component: () => import("../views/z.vue"),
+      meta: {
+        title: "z",
+      },
+    },
   ],
 });
 

@@ -1,13 +1,17 @@
 <template>
-  <router-link class="carousel-slide" :to="to">
-    <picture class="relative">
+  <picture class="relative carousel-slide">
+    <div
+      class="absolute flex items-center p-4 sm:p-6 lg:p-8 left-0 bg-gradient-to-t from-black/75 to-transparent bottom-0 text-shadow-lg w-full h-full"
+    >
       <span
-        class="absolute left-4 bottom-4 lg:left-10 lg:bottom-10 text-shadow-lg text-sm sm:text-lg lg:text-4xl text-white font-bold"
+        class="text-xs md:text-sm lg:text-base xl:text-lg text-white/80 text-shadow-xs text-shadow-black/75 font-medium mt-auto w-4/5"
         >{{ label }}</span
       >
+    </div>
+    <router-link class="w-full" :to="to">
       <img :src="img" :alt="img" loading="lazy" class="w-full" />
-    </picture>
-  </router-link>
+    </router-link>
+  </picture>
 </template>
 
 <script setup>

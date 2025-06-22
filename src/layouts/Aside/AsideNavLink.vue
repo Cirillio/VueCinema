@@ -14,7 +14,7 @@ import ButtonText from "../../ui/Buttons/ButtonText.vue";
 import { useRouter } from "vue-router";
 const router = useRouter();
 function navTo(to) {
-  router.replace("/" + to.toLowerCase());
+  router.push("/" + to.toLowerCase());
 }
 
 defineProps({

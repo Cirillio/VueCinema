@@ -9,13 +9,13 @@ export function useHeightRef(source, target, breakpoint) {
     if (!target.value) return;
 
     if (windowWidth < breakpoint) {
-      target.value.style.height = "auto";
+      target.value.style.maxHeight = "100%";
       return;
     }
 
     const newHeight = entries?.[0]?.contentRect?.height;
     if (newHeight) {
-      target.value.style.height = newHeight + "px";
+      target.value.style.maxHeight = newHeight + "px";
     }
   };
 

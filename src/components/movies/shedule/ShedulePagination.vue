@@ -44,6 +44,7 @@ const setPaginationShedule = () => {
   days_shedule.value = Array.from({ length: 14 }, (_, i) => {
     const new_day = addDays(date, i);
     return {
+      id: i,
       date: new_day.getDate(),
       day: days[new_day.getDay()],
       month: months[new_day.getMonth()],
@@ -55,7 +56,7 @@ const setPaginationShedule = () => {
 
 onMounted(() => {
   setPaginationShedule();
-  sheduleStore.SelectDate({ ...days_shedule.value[0], id: 0 });
+  sheduleStore.SelectDate({ ...days_shedule.value[0] });
 });
 </script>
 
