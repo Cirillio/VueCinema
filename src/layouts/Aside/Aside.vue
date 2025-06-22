@@ -11,8 +11,8 @@
 </template>
 
 <script setup>
-import AppLogo from "../../ui/AppLogo.vue";
+import AppLogo from "@/ui/AppLogo.vue";
 import AsideNav from "./AsideNav.vue";
-import ThemeButton from "../../ui/ThemeButton.vue";
-import LogoutButton from "../../components/Profile/LogoutButton.vue";
+import ThemeButton from "@/ui/ThemeButton.vue";
+import LogoutButton from "@/components/Profile/LogoutButton.vue";
 </script>

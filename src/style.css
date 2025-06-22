@@ -14,6 +14,7 @@ html {
 
 :root {
   --color-secondary: #41b883;
+  --color-primary: #e01642;
 }
 
 @theme {

@@ -3,57 +3,26 @@
     <div class="lg:grid h-fit min-w-0 flex flex-col lg:grid-cols-5 gap-2">
       <div
         ref="movieCarouselElement"
-        id="draggable"
-        data-carousel='{ "loadingClasses": "opacity-0", "isInfiniteLoop": true, "isAutoPlay": true, "speed": 3000, "dotsItemClasses": "carousel-dot carousel-active:bg-primary", "isDraggable": true }'
-        class="relative flex flex-col gap-2 col-span-3 h-fit"
+        class="w-full col-span-3 flex flex-col gap-2"
       >
         <PageSubtitle label="Today in Cinema" />
-        <div class="carousel rounded-lg aspect-video">
-          <div
-            class="carousel-body h-full opacity-0 carousel-dragging:transition-none carousel-dragging:cursor-grabbing"
-          >
-            <!-- Slide 1 -->
-            <div class="carousel-slide">
-              <router-link to="/movie/123">
-                <picture class="relative">
-                  <span
-                    class="absolute left-10 bottom-10 text-shadow-lg text-4xl text-white font-bold"
-                    >Premier!</span
-                  >
-                  <img src="/covers/love.jpg" alt="" class="w-full" />
-                </picture>
-              </router-link>
-            </div>
-            <!-- Slide 2 -->
-            <div class="carousel-slide">
-              <router-link to="/movie/123">
-                <picture class="relative">
-                  <span
-                    class="absolute left-10 bottom-10 text-shadow-lg text-4xl text-white font-bold"
-                    >Premier!</span
-                  >
-                  <img src="/covers/anora.jpg" alt="" class="w-full" />
-                </picture>
-              </router-link>
-            </div>
-            <!-- Slide 3 -->
-            <div class="carousel-slide">
-              <router-link to="/movie/123">
-                <picture class="relative">
-                  <span
-                    class="absolute left-10 bottom-10 text-shadow-lg text-4xl text-white font-bold"
-                    >Premier!</span
-                  >
-                  <img src="/covers/tos.jpg" alt="" class="w-full" />
-                </picture>
-              </router-link>
-            </div>
-          </div>
-        </div>
-        <div
-          class="carousel-pagination sm:flex hidden absolute bottom-3 right-3 scale-75 justify-center gap-3"
-        ></div>
+        <Carousel
+          aspect="video"
+          :loop="true"
+          :autoplay="true"
+          :dots="true"
+          :buttons="true"
+        >
+          <SlideLabelLink
+            v-for="prem in premiers"
+            :key="prem.id"
+            :to="'/shedule/' + prem.id"
+            :img="prem.image"
+            :label="prem.label"
+          />
+        </Carousel>
       </div>
+
       <div
         ref="sheduleElement"
         class="col-start-4 col-span-2 flex flex-col gap-2"
@@ -70,25 +39,16 @@
   </div>
 </template>
 
-<style>
-.carousel-dot {
-  opacity: 0.6;
-  transition: opacity 0.2s ease-in-out;
-}
-
-.carousel-dot:not(.carousel-active):hover {
-  opacity: 1;
-  background-color: var(--color-primary);
-}
-</style>
-
 <script setup>
 import { computed, ref } from "vue";
-import PageSubtitle from "../ui/PageSubtitle.vue";
-import ShedulePagination from "../components/movies/shedule/ShedulePagination.vue";
-import SheduleTable from "../components/movies/shedule/SheduleTable.vue";
-import { useSheduleStore } from "../stores/shedule.store";
-import { useHeightRef } from "../composables/useHeightRef";
+import { useSheduleStore } from "@/stores/shedule.store";
+import { useHeightRef } from "@/composables/useHeightRef";
+import Iconify from "../ui/Iconify.vue";
+import PageSubtitle from "@/ui/PageSubtitle.vue";
+import ShedulePagination from "@/components/movies/shedule/ShedulePagination.vue";
+import SheduleTable from "@/components/movies/shedule/SheduleTable.vue";
+import Carousel from "../ui/Carousel/Carousel.vue";
+import SlideLabelLink from "../ui/Carousel/Slides/SlideLabelLink.vue";
 
 const sheduleStore = useSheduleStore();
 
@@ -98,4 +58,26 @@ const movieCarouselElement = ref(null);
 const sheduleElement = ref(null);
 
 useHeightRef(movieCarouselElement, sheduleElement, 1024);
+
+const premiers = [
+  {
+    id: 0,
+    movie: "Love",
+    image: "/covers/love.jpg",
+    label: "Gaspar Noe`s Love has returned to the cinema!",
+  },
+  {
+    id: 1,
+    movie: "Anora",
+    image: "/covers/anora.jpg",
+    label: "Saun Baker`s Anora, a new Oscar Winner, is coming to the cinema!",
+  },
+  {
+    id: 2,
+    movie: "Triangle of Sadness",
+    image: "/covers/tos.jpg",
+    label:
+      "Hot satiric movie about love and the corrupting influence of wealth, winner of the Palme d'Or at the 2022 Cannes Film Festival",
+  },
+];
 </script>

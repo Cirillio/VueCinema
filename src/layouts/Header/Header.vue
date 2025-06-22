@@ -11,7 +11,7 @@
 </template>
 
 <script setup>
-import ProfileButton from "../../components/Profile/ProfileButton.vue";
-import OrderButton from "../../components/Profile/OrderButton.vue";
-import InputSearch from "../../ui/InputSearch.vue";
+import ProfileButton from "@/components/Profile/ProfileButton.vue";
+import OrderButton from "@/components/Profile/OrderButton.vue";
+import InputSearch from "@/ui/InputSearch.vue";
 </script>

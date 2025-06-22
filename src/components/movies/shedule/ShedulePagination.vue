@@ -62,20 +62,22 @@ onMounted(() => {
 <template>
   <div
     id="multi-slide-datetimes-shedule"
-    data-carousel='{ "loadingClasses": "opacity-0", "slidesQty": {"xs": 5, "sm": 9, "md": 11, "lg": 5, "xl": 6, "2xl": 7 }, "isDraggable": true }'
-    class="relative flex gap-2 w-full min-w-0 mx-auto"
+    data-carousel='{ "loadingClasses": "opacity-0",  "isSnap": true, "slidesQty": {"xs": 5, "sm": 9, "md": 11, "lg": 5, "xl": 6, "2xl": 7 }, "isDraggable": false }'
+    class="relative flex gap-2 w-full min-w-0"
   >
     <!-- Previous Slide -->
     <button
       type="button"
-      class="relative flex carousel-prev carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
+      class="relative max-sm:hidden sm:flex carousel-prev carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
     >
       <Iconify name="arrow-left" :size="20" />
     </button>
 
-    <div class="carousel h-fit rounded-none">
+    <div
+      class="carousel h-fit rounded-none overflow-y-auto snap-x snap-mandatory overflow-x-auto [scrollbar-width:none]"
+    >
       <div
-        class="carousel-body carousel-dragging:transition-none carousel-dragging:cursor-grabbing h-full opacity-0 rounded-none"
+        class="carousel-body max-w-0 carousel-dragging:transition-none carousel-dragging:cursor-grabbing h-full opacity-0 rounded-none"
       >
         <!-- Slide -->
         <div
@@ -91,7 +93,7 @@ onMounted(() => {
     <!-- Next Slide -->
     <button
       type="button"
-      class="relative flex carousel-next carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
+      class="relative max-sm:hidden sm:flex carousel-next carousel-disabled:opacity-50 btn btn-soft flex-1 aspect-square btn-square"
     >
       <Iconify name="arrow-right" :size="20" />
     </button>
